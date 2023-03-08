@@ -13,11 +13,11 @@ function App() {
        </div>
         <ul className="hraderRight">
           <li>
-            <svg/>
+            <img width={18} height={18} src="/images/bascet.svg" alt="#" />
             <span>1205 грн</span>
           </li>
           <li>
-            <svg/>
+            <img width={18} height={18} src="/images/users.svg" alt="#" />
           </li>
         </ul>
       </header>
