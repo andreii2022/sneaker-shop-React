@@ -3,6 +3,19 @@
 function App() {
   return (
     <div className="wrapper clear">
+      <div className="overlay">
+      <div className="drawer">
+        <h2>Корзина</h2>
+
+        <div className="cartItem">
+          <img src="/images/sneacers/1.jpg" alt="Sneakers"/>
+          <div>
+            <p>Мужские Кроссовки Nike Air Max 270</p>
+            <b>5999 грн</b>
+          </div>
+        </div>
+      </div>
+      </div>
       <header className="d-flex justify-between align-center p-40">
        <div className="d-flex align-center">
        <img width={40} height={40} src="/images/logo.png" alt="#" />
