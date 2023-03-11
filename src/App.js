@@ -5,17 +5,50 @@ function App() {
     <div className="wrapper clear">
       <div className="overlay">
       <div className="drawer">
-        <h2>Корзина</h2>
+        <h2 className="mb-30">Корзина</h2>
 
-        <div className="cartItem">
-          <img src="/images/sneacers/1.jpg" alt="Sneakers"/>
-          <div>
-            <p>Мужские Кроссовки Nike Air Max 270</p>
+        <div className="cartItem d-flex align-center mb-20">
+         <div 
+        style={{backgroundImage: "url(/images/sneacers/1.jpg)"}} 
+        className='cartItemImg'></div>
+
+      <div className="mr-20 flex">
+            <p className="mb-5">Мужские Кроссовки Nike Air Max 270</p>
             <b>5999 грн</b>
           </div>
-        </div>
+          <img className="removeBtn" src="/images/btn-remove.svg" alt="Remove"/>
+          </div>
+
+          <div className="cartItem d-flex align-center">
+          <div 
+          style={{backgroundImage: "url(/images/sneacers/1.jpg)"}} 
+          className='cartItemImg'></div>
+
+          <div className="mr-20 flex">
+            <p className="mb-5">Мужские Кроссовки Nike Air Max 270</p>
+            <b>5999 грн</b>
+          </div>
+          <img className="removeBtn" src="/images/btn-remove.svg" alt="Remove"/>
+       </div> 
+
+      <div className="items">
+        <ul className="cartTotalBlock">
+          <li>
+            <span>Итого:</span>
+            <div></div>
+            <b>5999 грн</b>
+          </li>
+          <li>
+            <span>Нфлог 5%:</span>
+            <div></div>
+            <b>5999 грн</b>
+          </li>
+        </ul>
       </div>
+
+
       </div>
+    </div>
       <header className="d-flex justify-between align-center p-40">
        <div className="d-flex align-center">
        <img width={40} height={40} src="/images/logo.png" alt="#" />
@@ -106,3 +139,8 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
