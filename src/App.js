@@ -1,9 +1,9 @@
-
+import Card from "./component/Card";
 
 function App() {
   return (
     <div className="wrapper clear">
-      <div className="overlay">
+      <div style={{display: 'none'}} className="overlay">
       <div className="drawer">
         <h2 className="d-flex justify-between mb-30 ">Корзина<img className="cu-p" src="/images/btn-remove.svg" alt="Remove"/></h2>
 
@@ -103,9 +103,6 @@ function App() {
         </ul>
         <button className="greenButton">Оформить заказ <img src="/images/arrow.svg" alt="Arrow"/> </button>
       </div>
-      
-
-
       </div>
     </div>
       <header className="d-flex justify-between align-center p-40">
