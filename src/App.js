@@ -38,13 +38,15 @@ function App() {
           <input placeholder="Search..." />
           </div>
         </div>
-            <div className="d-flex">
-              
+
+            <div className="d-flex">         
               {arr.map((obj) =>(
                 <Card
                 title={obj.title}
                 price={obj.price}
                 imageUrl={obj.imageUrl}
+                onFavorite={() => console.log('Добавили в закладки')}
+                onPlus={() => console.log('нажали на плюс') }
                 />
               ))}
           
