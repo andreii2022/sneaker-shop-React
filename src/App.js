@@ -8,6 +8,7 @@ import Drawer from "./component/Drawer";
 function App() {
   const [items, setItems] = React.useState([]);
   const [cartItems, setCartItems] = React.useState([]);
+  const [searcValue, setSearchValue] = React.useState('');
   const [cartOpened, setCartOpened] = React.useState(false);
 
   
@@ -40,8 +41,9 @@ const onAddToCard = (obj) => {
         </div>
 
             <div className="d-flex flex-wrap">         
-              {items.map((item) =>(
+              {items.map((item, index) =>(
                 <Card
+                key={index}
                 title={item.title}
                 price={item.price}
                 imageUrl={item.imageUrl}
