@@ -24,8 +24,13 @@ React.useEffect(() =>{
 }, []);
 
 const onAddToCard = (obj) => {
-  setCartItems([...cartItems, obj]);
-}
+  setCartItems((prev) => [...prev, obj]);
+};
+
+const onChangeSearchInput = (event) => {
+  // console.log(event.target.value);
+  setSearchValue(event.target.value);
+};
 
   return (
     <div className="wrapper clear">
@@ -33,10 +38,10 @@ const onAddToCard = (obj) => {
         <Header onClickCart={() => setCartOpened(true)} />
       <div className="content p-40">
         <div className="d-flex align-center justify-between mb-40">
-         <h1> Все кроссовки</h1>
+         <h1>{searcValue ? `Поиск по запросу: "${searcValue}"` : 'Все кроссовки'}</h1>
          <div className="searh-block">
            <img src="/images/search.svg" alt="Search"/>
-           <input placeholder="Search..." />
+           <input onChange={onChangeSearchInput} placeholder="Search..." />
           </div>
         </div>
 
