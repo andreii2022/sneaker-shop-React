@@ -37,6 +37,7 @@ header{border-bottom: 1px solid #eaeaea;
 
 .cartEmpty {
   text-align: center;
+  // flex-direction: column;
 
   p {
     width: 280px;
@@ -52,6 +53,7 @@ header{border-bottom: 1px solid #eaeaea;
 
       }
     }
+    
     img{
       position: relative;
       top: 1px;
