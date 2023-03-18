@@ -15,32 +15,34 @@ function App() {
   
 
 React.useEffect(() =>{
-  fetch('https://6413417ea68505ea732e44de.mockapi.io/items')
-  .then((res) => {
-    return res.json();
-  })
-  .then((json) => {
-    setItems(json);
-  });
-
 axios.get('https://6413417ea68505ea732e44de.mockapi.io/items').then(res =>{
   setItems(res.data);
-})
-
+});
+axios.get('https://6413417ea68505ea732e44de.mockapi.io/cart').then(res =>{
+  setCartItems(res.data);
+});
 }, []);
 
+const onRemoveItem = (id) => {
+  // axios.delete(`'https://6413417ea68505ea732e44de.mockapi.io/cart/${id}'`);
+  setCartItems((prev) => prev.filter((item) =>item.id !== id));
+
+};
+
+
 const onAddToCard = (obj) => {
+  axios.post('https://6413417ea68505ea732e44de.mockapi.io/cart', obj);
   setCartItems((prev) => [...prev, obj]);
 };
 
+
 const onChangeSearchInput = (event) => {
-  // console.log(event.target.value);
   setSearchValue(event.target.value);
 };
 
   return (
     <div className="wrapper clear">
-       {cartOpened ? <Drawer items={cartItems} onClose={() => setCartOpened(false)}/> : null}
+       {cartOpened ? <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem}/> : null}
         <Header onClickCart={() => setCartOpened(true)} />
       <div className="content p-40">
         <div className="d-flex align-center justify-between mb-40">
