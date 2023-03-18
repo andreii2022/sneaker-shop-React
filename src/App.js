@@ -53,7 +53,9 @@ const onChangeSearchInput = (event) => {
         </div>
 
             <div className="d-flex flex-wrap">         
-              {items.map((item, index) =>(
+              {items
+              .filter((item) => item.title.toLowerCase().includes(searcValue.toLowerCase()) )
+              .map((item, index) =>(
                 <Card
                 key={index}
                 title={item.title}
