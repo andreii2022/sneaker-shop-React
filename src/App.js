@@ -41,7 +41,14 @@ const onChangeSearchInput = (event) => {
          <h1>{searcValue ? `Поиск по запросу: "${searcValue}"` : 'Все кроссовки'}</h1>
          <div className="searh-block">
            <img src="/images/search.svg" alt="Search"/>
-           <input onChange={onChangeSearchInput} placeholder="Search..." />
+           {searcValue && (
+           <img
+            onClick={() => setSearchValue('')} 
+            className=" clear cu-p" 
+            src="/images/btn-remove.svg" 
+            alt="Clear"/>)}
+           
+           <input onChange={onChangeSearchInput} value={searcValue} placeholder="Search..." />
           </div>
         </div>
 
