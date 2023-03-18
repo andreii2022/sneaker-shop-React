@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import Card from "./component/Card/Card";
 import Header from "./component/Header";
 import Drawer from "./component/Drawer";
@@ -21,6 +22,11 @@ React.useEffect(() =>{
   .then((json) => {
     setItems(json);
   });
+
+axios.get('https://6413417ea68505ea732e44de.mockapi.io/items').then(res =>{
+  setItems(res.data);
+})
+
 }, []);
 
 const onAddToCard = (obj) => {
