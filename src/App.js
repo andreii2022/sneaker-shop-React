@@ -37,7 +37,7 @@ const onRemoveItem = (id) => {
 };
 
 const onAddToFavorite = (obj) => {
-  axios.post('https://6413417ea68505ea732e44de.mockapi.io/favorites', obj);
+  axios.post('https://6413417ea68505ea732e44de.mockapi.io/cart/', obj);
   setFavorites((prev) => [...prev, obj]);
 };
 
