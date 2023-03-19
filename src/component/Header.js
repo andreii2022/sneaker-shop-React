@@ -15,8 +15,11 @@ function Header (props) {
              <img width={18} height={18} src="/images/bascet.svg" alt="Cart" />
              <span>1205 грн</span>
            </li>
-           <li>
-             <img width={18} height={18} src="/images/users.svg" alt="User" />
+           <li className='mr-20 cu-p'>
+             <img width={18} height={18} src="/images/heart.svg" alt="Закладки" />
+           </li>
+           <li >
+             <img width={18} height={18} src="/images/users.svg" alt="Пользователь" />
            </li>
          </ul>
        </header>
