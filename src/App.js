@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import {Route, Routes} from 'react-router-dom';
+
 import Card from "./component/Card/Card";
 import Header from "./component/Header";
 import Drawer from "./component/Drawer";
@@ -51,7 +53,13 @@ const onChangeSearchInput = (event) => {
   return (
     <div className="wrapper clear">
        {cartOpened ? <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem}/> : null}
-        <Header onClickCart={() => setCartOpened(true)} />
+      <Header onClickCart={() => setCartOpened(true)} />
+      
+        
+        <Routes>
+        <Route path="/favorites" element={'dddddddddd'}/>
+        </Routes>
+        
       <div className="content p-40">
         <div className="d-flex align-center justify-between mb-40">
          <h1>{searcValue ? `Поиск по запросу: "${searcValue}"` : 'Все кроссовки'}</h1>
