@@ -26,6 +26,10 @@ axios.get('https://6413417ea68505ea732e44de.mockapi.io/items').then((res) => {
 axios.get('https://6413417ea68505ea732e44de.mockapi.io/cart').then((res) =>{
   setCartItems(res.data);
 });
+
+axios.get('https://6413417ea68505ea732e44de.mockapi.io/cart').then((res) =>{
+  setFavorites(res.data);
+});
 }, []);
 
 const onAddToCard = (obj) => {
@@ -68,7 +72,8 @@ const onChangeSearchInput = (event) => {
           onAddToCard={onAddToCard}
          />}/>
 
-          <Route path="/favorites" exact element={<Favorites/>}/>
+          <Route path="/favorites" exact element={<Favorites
+          items={favorites}/>}/>
 
         </Routes>
     </div>

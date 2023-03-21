@@ -1,6 +1,6 @@
+import Card from "../component/Card/Card";
 
-
-function Favorites () {
+function Favorites ({items}) {
     return (
     <div className="content p-40">
     <div className="d-flex align-center justify-between mb-40">
@@ -8,7 +8,16 @@ function Favorites () {
     </div>
 
         <div className="d-flex flex-wrap">         
-          Закладки
+        {items
+          .map((item, index) =>(
+            <Card
+            key={index}
+            title={item.title}
+            price={item.price}
+            imageUrl={item.imageUrl}
+           
+            />
+          ))}
         </div>
   </div>
 
