@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
 import { BrowserRouter as  Router} from 'react-router-dom';
-
 import 'macro-css';
 import App from './App';
 

@@ -2,9 +2,11 @@ import React from "react";
 import axios from "axios";
 import {Route, Routes} from 'react-router-dom';
 
-import Home from "./pages/Home";
+
 import Header from "./component/Header";
 import Drawer from "./component/Drawer";
+import Home from "./pages/Home";
+import Favorites from "./pages/Favorites";
 
 
 
@@ -65,10 +67,10 @@ const onChangeSearchInput = (event) => {
           onAddToFavorite={onAddToFavorite}
           onAddToCard={onAddToCard}
          />}/>
-         <Route path="/" exact element={<Home/>} />
+
+          <Route path="/favorites" exact element={<Favorites/>}/>
+
         </Routes>
-        
-      
     </div>
   );
 }
