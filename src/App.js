@@ -1,8 +1,6 @@
 import React from "react";
 import axios from "axios";
 import {Route, Routes} from 'react-router-dom';
-
-
 import Header from "./component/Header";
 import Drawer from "./component/Drawer";
 import Home from "./pages/Home";
@@ -26,7 +24,6 @@ axios.get('https://6413417ea68505ea732e44de.mockapi.io/items').then((res) => {
 axios.get('https://6413417ea68505ea732e44de.mockapi.io/cart').then((res) =>{
   setCartItems(res.data);
 });
-
 axios.get('https://6413417ea68505ea732e44de.mockapi.io/cart').then((res) =>{
   setFavorites(res.data);
 });
@@ -45,8 +42,15 @@ const onRemoveItem = (id) => {
 };
 
 const onAddToFavorite = (obj) => {
-  axios.post('https://6413417ea68505ea732e44de.mockapi.io/cart/', obj);
+  if(favorites.find(obj => obj.id === obj.id)){
+  axios.delete(`https://6413417ea68505ea732e44de.mockapi.io/cart/${obj.id}`);
+  setFavorites((prev) => prev.filter((item) => item.id !== obj.id));
+  } else {
+    axios.post('https://6413417ea68505ea732e44de.mockapi.io/cart/', obj);
   setFavorites((prev) => [...prev, obj]);
+
+  }
+  
 };
 
 
@@ -72,10 +76,11 @@ const onChangeSearchInput = (event) => {
           onAddToCard={onAddToCard}
          />}/>
 
-          <Route path="/favorites" exact element={<Favorites
-          items={favorites}/>}/>
+          <Route path="/favorites" exact element={<Favorites items={favorites} onAddToFavorite={onAddToFavorite}/>}/>
 
         </Routes>
+        
+
     </div>
   );
 }
