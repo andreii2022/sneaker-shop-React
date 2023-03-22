@@ -3,6 +3,7 @@ import Card from "../component/Card/Card";
 
 function Home({
     items,
+    cartItems,
     searcValue,
     setSearchValue,
     onChangeSearchInput,
@@ -32,11 +33,10 @@ function Home({
           .map((item, index) =>(
             <Card
             key={index}
-            title={item.title}
-            price={item.price}
-            imageUrl={item.imageUrl}
             onFavorite={onAddToFavorite}
             onPlus={(obj) => onAddToCard(obj)}
+            added={cartItems.some(obj => Number(obj.id) === Number(item.id))}
+            {...item}
             />
           ))}
     </div>
