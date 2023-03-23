@@ -11,22 +11,24 @@ import Favorites from "./pages/Favorites";
 function App() {
   const [items, setItems] = React.useState([]);
   const [cartItems, setCartItems] = React.useState([]);
+  const [favorites, setFavorites] = React.useState([]);
   const [searcValue, setSearchValue] = React.useState('');
-  const [favorites, setFavorites] = React.useState('');
   const [cartOpened, setCartOpened] = React.useState(false);
 
   
 
-React.useEffect(() =>{
-axios.get('https://6413417ea68505ea732e44de.mockapi.io/items').then((res) => {
-  setItems(res.data);
-});
-axios.get('https://6413417ea68505ea732e44de.mockapi.io/cart').then((res) =>{
-  setCartItems(res.data);
-});
-axios.get('https://6413417ea68505ea732e44de.mockapi.io/cart').then((res) =>{
-  setFavorites(res.data);
-});
+React.useEffect(() => {
+  async function fetchData() {
+    const cartResponse = await axios.get('https://6413417ea68505ea732e44de.mockapi.io/cart');
+    const favoritesResponse = await axios.get('https://6413417ea68505ea732e44de.mockapi.io/cart');
+    const itemsResponse = await axios.get('https://6413417ea68505ea732e44de.mockapi.io/items');
+
+    setCartItems(cartResponse.data);
+    setFavorites(favoritesResponse.data);
+    setItems(itemsResponse.data);
+}
+fetchData();
+
 }, []);
 
 const onAddToCard = (obj) => {
