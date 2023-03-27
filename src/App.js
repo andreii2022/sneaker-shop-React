@@ -5,6 +5,11 @@ import Header from "./component/Header";
 import Drawer from "./component/Drawer";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
+import AppContext from "./context";
+
+
+// export const AppContext = React.createContext({});
+
 
 
 
@@ -73,9 +78,15 @@ const onChangeSearchInput = (event) => {
   setSearchValue(event.target.value);
 };
 
+const isItemAdded = (id) => {
+  return cartItems.some((obj) => Number(obj.id) === Number(id));
+};
+
   return (
+    <AppContext.Provider value={{ items, cartItems, favorites, isItemAdded, onAddToFavorite }}>
     <div className="wrapper clear">
-       {cartOpened ? <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem}/> : null}
+       {cartOpened && ( <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem}/> )}
+      
       <Header onClickCart={() => setCartOpened(true)} />
       
         
@@ -91,11 +102,12 @@ const onChangeSearchInput = (event) => {
           isLoading={isLoading}
          />}/>
 
-          <Route path="/favorites" exact element={<Favorites items={favorites} onAddToFavorite={onAddToFavorite}/>}/>
+          <Route path="/favorites" exact element={<Favorites/>}/>
 
         </Routes>
         
     </div>
+    </AppContext.Provider>
   );
 }
 
