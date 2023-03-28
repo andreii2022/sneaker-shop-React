@@ -6,6 +6,7 @@ import Drawer from "./component/Drawer";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import AppContext from "./context";
+import Orders from "./pages/Orders";
 
 
 function App() {
@@ -83,7 +84,8 @@ const isItemAdded = (id) => {
        cartItems, 
        favorites, 
        isItemAdded, 
-       onAddToFavorite, 
+       onAddToFavorite,
+       onAddToCard, 
        setCartOpened,
        setCartItems 
        }}>
@@ -91,7 +93,7 @@ const isItemAdded = (id) => {
        {cartOpened && (
          <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem}/> )}
       
-      <Header onClickCart={() => setCartOpened(true)} />
+         <Header onClickCart={() => setCartOpened(true)} />
       
         
         <Routes>
@@ -107,6 +109,7 @@ const isItemAdded = (id) => {
          />}/>
 
           <Route path="/favorites" exact element={<Favorites/>}/>
+          <Route path="/orders" exact element={<Orders/>}/>
 
         </Routes>
         

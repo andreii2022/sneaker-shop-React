@@ -34,7 +34,10 @@ function Header (props) {
              </Link>
            </li>
            <li >
-             <img width={18} height={18} src="/images/users.svg" alt="Пользователь" />
+           <Link to="/orders">
+               <img width={18} height={18} src="/images/users.svg" alt="Пользователь" />
+             </Link>
+             
            </li>
          </ul>
        </header>

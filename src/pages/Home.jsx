@@ -24,7 +24,6 @@ function Home({
           key={index}
           onFavorite={(obj) => onAddToFavorite(obj)}
           onPlus={(obj) => onAddToCard(obj)}
-          // added={isItemAdded(item && item.id)}
           loading={isLoading}
           {...item}
         />
