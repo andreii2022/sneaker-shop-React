@@ -1,15 +1,20 @@
 import React from 'react';
 import axios from 'axios';
 import Info from './info';
-import AppContext from '../context';
+import { useCart } from '../hooks/useCart';
+
+// import AppContext from '../context';
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function Drawer ({onClose, onRemove, items = [] }) {
-  const {cartItems, setCartItems} = React.useContext(AppContext);
+  const {cartItems, setCartItems, totalPrice} = useCart();
+  // const {cartItems, setCartItems} = React.useContext(AppContext);
   const [orderId, setOrderId] = React.useState(null);
   const [isOrderComplete, setIsOrderComlete,] = React.useState(false);
   const [isLoading, setIsloading] = React.useState(false);
+  // const totalPrice = cartItems.reduce((sum, obj) => obj.price + sum, 0);
+
 
   const onClickOrder = async () => {
   try{
@@ -62,12 +67,12 @@ function Drawer ({onClose, onRemove, items = [] }) {
                   <li>
                     <span>Итого:</span>
                     <div></div>
-                    <b>5999 грн</b>
+                    <b>{totalPrice}</b>
                   </li>
                   <li>
                     <span>Налог 5%:</span>
                     <div></div>
-                    <b>5999 грн</b>
+                  <b>{Math.round(totalPrice / 100 * 5)}</b>
                   </li>
                 </ul>
                 <button disabled={isLoading} onClick={onClickOrder} className="greenButton">Оформить заказ <img src="/images/arrow.svg" alt="Arrow"/>
