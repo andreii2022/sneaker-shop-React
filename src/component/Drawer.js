@@ -17,14 +17,13 @@ function Drawer ({onClose, onRemove, items = [] }) {
     const { data } = await axios.post('https://6413417ea68505ea732e44de.mockapi.io/cart/', {
       items: cartItems,
     });
-    // await axios.put('https://6413417ea68505ea732e44de.mockapi.io/cart/', []);
     setOrderId(data.id)
     setIsOrderComlete(true);
     setCartItems([]);
 
     for (let i = 0; i < cartItems.length; i++) {
       const item = cartItems[i];
-      await axios.delete('https://6413417ea68505ea732e44de.mockapi.io/cart/'+ item.id);
+      await axios.delete('https://6413417ea68505ea732e44de.mockapi.io/cart/' + item.id);
       await delay(1000);
     } 
   } catch (error) {
