@@ -3,22 +3,30 @@ import axios from 'axios';
 import Info from './info';
 import AppContext from '../context';
 
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 function Drawer ({onClose, onRemove, items = [] }) {
   const {cartItems, setCartItems} = React.useContext(AppContext);
   const [orderId, setOrderId] = React.useState(null);
   const [isOrderComplete, setIsOrderComlete,] = React.useState(false);
-  const [isLoading, setIsloading,] = React.useState(true);
+  const [isLoading, setIsloading] = React.useState(false);
 
   const onClickOrder = async () => {
   try{
     setIsloading(true);
     const { data } = await axios.post('https://6413417ea68505ea732e44de.mockapi.io/cart/', {
-    items: cartItems
+      items: cartItems,
     });
-    await axios.put('https://6413417ea68505ea732e44de.mockapi.io/cart/', []);
+    // await axios.put('https://6413417ea68505ea732e44de.mockapi.io/cart/', []);
     setOrderId(data.id)
     setIsOrderComlete(true);
     setCartItems([]);
+
+    for (let i = 0; i < cartItems.length; i++) {
+      const item = cartItems[i];
+      await axios.delete('https://6413417ea68505ea732e44de.mockapi.io/cart/'+ item.id);
+      await delay(1000);
+    } 
   } catch (error) {
     alert("Не удалось создать заказ")
   }

@@ -1,16 +1,11 @@
 import React from "react";
-import axios from "axios";
 import {Route, Routes} from 'react-router-dom';
+import axios from "axios";
 import Header from "./component/Header";
 import Drawer from "./component/Drawer";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import AppContext from "./context";
-
-
-// export const AppContext = React.createContext({});
-
-
 
 
 function App() {
@@ -31,7 +26,6 @@ React.useEffect(() => {
     const itemsResponse = await axios.get('https://6413417ea68505ea732e44de.mockapi.io/items');
 
     setIsLoading(false);
-
     setCartItems(cartResponse.data);
     setFavorites(favoritesResponse.data);
     setItems(itemsResponse.data);
@@ -61,7 +55,7 @@ const onAddToFavorite = async (obj) => {
  try{
   if(favorites.find(favObj => Number(favObj.id) === Number(obj.id))) {
     axios.delete(`https://6413417ea68505ea732e44de.mockapi.io/cart/${obj.id}`);
-    setFavorites((prev) => prev.filter((item) =>Number(item.id )!== Number(obj.id)));
+    setFavorites((prev) => prev.filter((item) =>Number(item.id ) !== Number(obj.id)));
   } else {
     const {data} = await axios.post('https://6413417ea68505ea732e44de.mockapi.io/cart/', obj);
     setFavorites((prev) => [...prev, data]);   
@@ -83,9 +77,19 @@ const isItemAdded = (id) => {
 };
 
   return (
-    <AppContext.Provider value={{ items, cartItems, favorites, isItemAdded, onAddToFavorite, setCartOpened }}>
+    <AppContext.Provider
+     value={{
+       items, 
+       cartItems, 
+       favorites, 
+       isItemAdded, 
+       onAddToFavorite, 
+       setCartOpened,
+       setCartItems 
+       }}>
     <div className="wrapper clear">
-       {cartOpened && ( <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem}/> )}
+       {cartOpened && (
+         <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem}/> )}
       
       <Header onClickCart={() => setCartOpened(true)} />
       
@@ -94,8 +98,8 @@ const isItemAdded = (id) => {
          <Route path="/" exact element={<Home
           items={items}
           cartItems={cartItems}
-          setSearchValue={setSearchValue}
           searcValue={searcValue}
+          setSearchValue={setSearchValue}
           onChangeSearchInput={onChangeSearchInput}
           onAddToFavorite={onAddToFavorite}
           onAddToCard={onAddToCard}
