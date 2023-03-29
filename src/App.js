@@ -2,7 +2,7 @@ import React from "react";
 import {Route, Routes} from 'react-router-dom';
 import axios from "axios";
 import Header from "./component/Header";
-import Drawer from "./component/Drawer";
+import Drawer from "./component/Card/Drawer/Drawer";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import AppContext from "./context";
@@ -90,8 +90,13 @@ const isItemAdded = (id) => {
        setCartItems 
        }}>
     <div className="wrapper clear">
-       {cartOpened && (
-         <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem}/> )}
+       
+         <Drawer 
+          items={cartItems} 
+          onClose={() => setCartOpened(false)}
+          onRemove={onRemoveItem}
+          opened={cartOpened}
+          />
       
          <Header onClickCart={() => setCartOpened(true)} />
       
