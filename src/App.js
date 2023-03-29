@@ -21,35 +21,49 @@ function App() {
 
 React.useEffect(() => {
   async function fetchData() {
-    setIsLoading(true);
-    const cartResponse = await axios.get('https://6413417ea68505ea732e44de.mockapi.io/cart');
-    const favoritesResponse = await axios.get('https://6413417ea68505ea732e44de.mockapi.io/cart');
-    const itemsResponse = await axios.get('https://6413417ea68505ea732e44de.mockapi.io/items');
+  try {
+    const [cartResponse, favoritesResponse, itemsResponse] = await Promise.all([
+      axios.get('https://6413417ea68505ea732e44de.mockapi.io/cart'),
+      axios.get('https://6413417ea68505ea732e44de.mockapi.io/cart'),
+      axios.get('https://6413417ea68505ea732e44de.mockapi.io/items'),
+    ]);
+   
 
     setIsLoading(false);
     setCartItems(cartResponse.data);
     setFavorites(favoritesResponse.data);
     setItems(itemsResponse.data);
+  } catch (error) {
+    alert('Ошибка при запросе данных ;(');
+  }
 }
 fetchData();
 
 }, []);
 
-const onAddToCard = (obj) => {
+const onAddToCard = async (obj) => {
+ try {
   if(cartItems.find((item) => Number(item.id) === Number( obj.id))) {
-    axios.delete(`https://6413417ea68505ea732e44de.mockapi.io/cart/${obj.id}`);
     setCartItems((prev) => prev.filter((item) => Number( item.id) !== Number( obj.id)));
+    await axios.delete(`https://6413417ea68505ea732e44de.mockapi.io/cart/${obj.id}`);
   } else {
-    axios.post('https://6413417ea68505ea732e44de.mockapi.io/cart', obj);
     setCartItems((prev) => [...prev, obj]);
+    await axios.post('https://6413417ea68505ea732e44de.mockapi.io/cart', obj);
   }
+ } catch (error) {
+  alert('Ошибка при добавлении  в карзину');
+ }
 };
 
 
 const onRemoveItem = (id) => {
-  axios.delete(`https://6413417ea68505ea732e44de.mockapi.io/cart/${id}`);
-  setCartItems((prev) => prev.filter((item) => item.id !== id));
-
+  try {
+    axios.delete(`https://6413417ea68505ea732e44de.mockapi.io/cart/${id}`);
+    setCartItems((prev) => prev.filter((item) => item.id !== id));
+  } catch (error) {
+    alert(' Ошибка при удалении из карзины')
+  
+  }
 };
 
 const onAddToFavorite = async (obj) => {
